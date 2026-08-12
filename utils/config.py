@@ -60,7 +60,7 @@ class RuleSet:
         missing = set(range(3, self.num_dice + 1)) - set(self.multiplier)
         if missing:
             raise ValueError(f"no multiplier for set sizes {sorted(missing)}")
-        if "straight" in self.specials and self.num_dice < 6:
+        if "full_straight" in self.specials and self.num_dice < 6:
             raise ValueError("straight requires six dice")
 
     def n_of_a_kind_score(self, face: int, count: int) -> int:

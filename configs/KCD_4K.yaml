@@ -34,8 +34,13 @@ n_of_a_kind:
 # Only combos listed in `enabled` are active. Disabling changes farkle odds,
 # so re-run the probability tests after touching this.
 specials:
-  enabled: [full_straight, low_straight,high_straight]
+  enabled: [full_straight, low_straight, high_straight]
   values:
-    full_straight: 1500       # 1-2-3-4-5-6
-    low_straight: 500      #1-2-3-4-5
-    high_straight: 750     #2-3-4-5-6
+    full_straight: 1500      # 1-2-3-4-5-6
+    low_straight: 500        # 1-2-3-4-5
+    high_straight: 750       # 2-3-4-5-6
+  dice_used:
+    full_straight: 6
+    low_straight: 5
+    high_straight: 5
+  precedence: [full_straight, high_straight, low_straight]
