@@ -1,0 +1,41 @@
+name: KCD_4K
+description: Six dice, first to 4K
+
+
+# --- Game frame ---
+num_dice: 6
+target_score: 4000
+min_first_bank: 0      # must bank this much to get "on the board"; 0 to disable
+final_round: false        # opponents get one last turn after someone crosses target
+hot_dice: false           # all six scoring -> re-roll all six, turn score carries
+
+# --- Scoring: single dice ---
+singles:
+  1: 100
+  5: 50
+
+# --- Scoring: n-of-a-kind ---
+# Triple value by face, then a multiplier for each extra matching die.
+n_of_a_kind:
+  triple:
+    1: 1000
+    2: 200
+    3: 300
+    4: 400
+    5: 500
+    6: 600
+  multiplier:            # keyed by how many dice in the set
+    3: 1
+    4: 2
+    5: 4
+    6: 8
+
+# --- Scoring: special combinations ---
+# Only combos listed in `enabled` are active. Disabling changes farkle odds,
+# so re-run the probability tests after touching this.
+specials:
+  enabled: [full_straight, low_straight,high_straight]
+  values:
+    full_straight: 1500       # 1-2-3-4-5-6
+    low_straight: 500      #1-2-3-4-5
+    high_straight: 750     #2-3-4-5-6
