@@ -1,8 +1,11 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Mapping
+import hashlib
+import json
+from pathlib import Path
 
 import yaml
 
@@ -65,3 +68,8 @@ class RuleSet:
 
     def n_of_a_kind_score(self, face: int, count: int) -> int:
         return self.triple[face] * self.multiplier[count]
+    
+    def fingerprint(self) -> str:
+        """Stable identifier for the rule values used in a run."""
+        payload = json.dumps(asdict(self), sort_keys=True, separators=(",", ":"))
+        return hashlib.sha256(payload.encode("utf-8")).hexdigest()
